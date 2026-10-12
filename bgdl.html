@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>变更登记</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+  <symbol id="i-angle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
+</defs></svg>
+
+<div class="screen">
+  <div class="subhead">
+    <a class="back" href="index.html"><svg width="22" height="22"><use href="#i-angle"/></svg></a>
+    <span class="st">变更登记</span>
+  </div>
+
+  <div class="mp-body">
+    <div class="mp-card">
+      <svg id="mp" viewBox="0 0 200 200"></svg>
+      <div class="mp-tip">长按上方图片，选择"识别图中二维码"进入小程序</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// 小程序码风格装饰图案（确定性伪随机，非真实小程序码）
+(function(){
+  var svg=document.getElementById('mp'), main='#2f6fd0';
+  function h(x,y,k){var s=Math.sin((x+2)*127.1+(y+3)*311.7+(k||0)*74.7)*43758.5453;return s-Math.floor(s);}
+  var r='';
+  for(var i=0;i<430;i++){
+    var a=h(i,7)*Math.PI*2, rr=38+h(i,13)*58;
+    var x=100+Math.cos(a)*rr, y=100+Math.sin(a)*rr;
+    var d=1.2+h(i,23)*2.2;
+    if(h(i,31)>0.45) r+='<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+d.toFixed(1)+'" fill="'+main+'"/>';
+  }
+  [-125,-55,125].forEach(function(deg){
+    var a=deg*Math.PI/180, ex=100+Math.cos(a)*87, ey=100+Math.sin(a)*87;
+    r+='<circle cx="'+ex.toFixed(1)+'" cy="'+ey.toFixed(1)+'" r="9" fill="none" stroke="'+main+'" stroke-width="3"/>';
+    r+='<circle cx="'+ex.toFixed(1)+'" cy="'+ey.toFixed(1)+'" r="3" fill="'+main+'"/>';
+  });
+  r+='<circle cx="100" cy="100" r="36" fill="#fff"/>';
+  r+='<circle cx="100" cy="100" r="34" fill="none" stroke="'+main+'" stroke-width="2.5"/>';
+  // 中心：蓝色城市图形 + 金色弧
+  r+='<circle cx="100" cy="100" r="27" fill="'+main+'"/>';
+  r+='<rect x="88" y="98" width="7" height="14" fill="#fff"/>';
+  r+='<rect x="97" y="92" width="8" height="20" fill="#fff"/>';
+  r+='<rect x="107" y="100" width="6" height="12" fill="#fff"/>';
+  r+='<path d="M84,108 C94,116 110,116 118,106 C112,120 92,122 84,108 Z" fill="#f4c855"/>';
+  // 微信小程序角标
+  r+='<g transform="translate(158,158)"><circle r="15" fill="#3ebc00"/><path d="M-6.5,4.5 C-8,-2 -4,-7.5 1,-7 C5,-6.6 7,-3.6 5.5,-1 C4.6,0.6 2.6,1.4 0.6,1.2 C-2,1 -4,1.8 -4.6,3.6 C-5.2,5.4 -3.8,7 -1.4,7.2" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><path d="M6.5,-4.5 C8,2 4,7.5 -1,7 C-5,6.6 -7,3.6 -5.5,1" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></g>';
+  svg.innerHTML=r;
+})();
+</script>
+
+</body>
+</html>
